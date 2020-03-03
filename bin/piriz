@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+
+'use strict';
+
+process.title = 'piriz';
+
+process.on('uncaughtException', function(err) {
+  console.error('Caught exception:\n', err.stack, '\n\nMind letting us know?\n');
+  process.exit(0);
+});
+
+var PirizCli = require('../cli.js');
+
+PirizCli.run(process.argv).catch(function(err){
+  console.error('Caught exception:\n', err.stack, '\n\nMind letting us know?\n');
+  process.exit(0);
+});

@@ -1,0 +1,19 @@
+{
+  "name": "piriz",
+  "version": "0.1.0",
+  "description": "make webservice calls simple as function call",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mghayour/piriz.git"
+  },
+  "author": "mghayour",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mghayour/piriz/issues"
+  },
+  "homepage": "https://github.com/mghayour/piriz#readme"
+}

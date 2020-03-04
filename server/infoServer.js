@@ -1,7 +1,7 @@
 // small express server to pass info.json to client
 const express = require('express')
 const http = express()
-const log = require("../helper/log").log
+const log = require("../helper/log")
 
 exports.start = function (info) {
   http.get('/', function (req, res) {

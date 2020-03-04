@@ -18,7 +18,6 @@
   },
   "homepage": "https://github.com/mghayour/piriz#readme",
   "dependencies": {
-    "express": "^4.17.1",
-    "light-http-server": "^1.0.15"
+    "express": "^4.17.1"
   }
 }

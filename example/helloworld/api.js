@@ -5,4 +5,6 @@ exports.hello = function() {
   return "Hello World, Im working"
 }
 
-exports.TEST = "oooffff"
+exports.add = function (a, b) {
+  return a + b
+}

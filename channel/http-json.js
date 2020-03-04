@@ -13,7 +13,15 @@ exports.runServer = function (info, api) {
   info.methodList.forEach(method => {
     // TODO: pass args to api methods
     // TODO: support possible exceptions (it should propagate exceptions to client)
-    http.get('/' + method, (req, res) => res.send(api[method]()))
+    http.get('/' + method, (req, res) => {
+      let apiResult = api[method]()
+      let httpResult = {
+        'ok': true,
+        'res': apiResult
+      }
+      httpResult = JSON.stringify(httpResult)
+      res.send(httpResult)
+    })
   });
   http.listen(info.channelPort)
   log("http-json server is online on port " + info.channelPort)
@@ -21,5 +29,8 @@ exports.runServer = function (info, api) {
 
 exports.callServer = function (info, method, args) {
   let url = "http://" + info.host + ":" + info.channelPort + '/' + method
-  return axios.get(url).then((res) => res.data)
+  return axios.get(url).then((res) => {
+    let serverRes = res.data
+    return serverRes.res
+  })
 }

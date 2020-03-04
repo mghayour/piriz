@@ -1,5 +1,6 @@
 // small express server to pass info.json to client
-const http = require('light-http-server');
+const express = require('express')
+const http = express()
 const log = require("../helper/log").log
 
 exports.start = function (info) {

@@ -25,9 +25,9 @@ exports.start = function (args) {
   info = {
     'host': 'N/A',
     'infoPort': 2679,
-    'dataPort': 2680,
+    'channelPort': 2680,
     'channelType': 'http-json',
-    'apiList': []
+    'methodList': []
   }
   if (api.PIRIZ_SETTING) {
     for (const key in api.PIRIZ_SETTING) {
@@ -37,10 +37,10 @@ exports.start = function (args) {
     }
   }
 
-  // update apiList
+  // update methodList
   for (const key in api) {
     if (typeof api[key] == "function") {
-      info.apiList.push(key)
+      info.methodList.push(key)
     }
   }
 

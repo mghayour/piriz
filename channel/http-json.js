@@ -7,8 +7,9 @@
 const log = require("../helper/log")
 const express = require('express')
 const http = express()
+const axios = require('axios');
 
-exports.runServer = function(info, api) {
+exports.runServer = function (info, api) {
   info.methodList.forEach(method => {
     // TODO: pass args to api methods
     // TODO: support possible exceptions (it should propagate exceptions to client)
@@ -18,6 +19,7 @@ exports.runServer = function(info, api) {
   log("http-json server is online on port " + info.channelPort)
 }
 
-exports.callServer = function(info, method, args) {
-  console.log("callServer", info)
+exports.callServer = function (info, method, args) {
+  let url = "http://" + info.host + ":" + info.channelPort + '/' + method
+  return axios.get(url).then((res) => res.data)
 }

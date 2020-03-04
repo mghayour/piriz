@@ -19,6 +19,7 @@
   "homepage": "https://github.com/mghayour/piriz#readme",
   "dependencies": {
     "axios": "^0.19.2",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "sync-request": "^6.1.0"
   }
 }

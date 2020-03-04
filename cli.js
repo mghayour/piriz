@@ -38,10 +38,8 @@ Cli.run = function (args) {
 
     // start server
     if (args[2] == 'start') {
-      // const server = require('./server/server.js');
-      // server.main(args.slice(2));
-      console.log("Not implemented yet!")
-      console.log("Server start args:", args.slice(2))
+      const server = require('./server/server.js');
+      server.start(args.slice(3));
       ok = true;
     }
 

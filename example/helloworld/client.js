@@ -1,3 +1,6 @@
+// run it using this command
+// node client.js
+
 // import piriz
 const piriz = require("piriz");
 

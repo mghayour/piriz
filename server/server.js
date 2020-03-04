@@ -7,6 +7,7 @@
 
 const path = require('path')
 const fs = require('fs');
+const infoServer = require('./infoServer');
 
 exports.start = function (args) {
   // read api file
@@ -43,9 +44,9 @@ exports.start = function (args) {
     }
   }
 
-  // run info server
-  console.log(info)
+  // start info server
+  infoServer.start(info)
 
-  // run target channel 
+  // start target channel
 
 }

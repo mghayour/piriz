@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/mghayour/piriz/issues"
   },
-  "homepage": "https://github.com/mghayour/piriz#readme"
+  "homepage": "https://github.com/mghayour/piriz#readme",
+  "dependencies": {
+    "light-http-server": "^1.0.15"
+  }
 }

@@ -14,6 +14,6 @@ myService.hello().then((res) => {
   console.log("Hello result:", res)
 })
 
-myService.add(1, 2).then((res) => {
+myService.add(1025, 2).then((res) => {
   console.log("Add result:", res)
 })

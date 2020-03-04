@@ -21,12 +21,13 @@ class PirizClient {
   async _getServiceInfo() {
     let url = "http://" + this.host + ":" + this.infoPort + '/info.json'
     var res = request('GET', url);
-    this.info = JSON.parse(res.getBody())
-    this.info.methodList.forEach(method => {
+    const me = this
+    me.info = JSON.parse(res.getBody())
+    me.info.methodList.forEach(method => {
       // TODO: support function args
       // TODO: support possible exceptions
-      this[method] = () => {
-        return this._callServiceMethod(method, arguments)
+      me[method] = function (...args) {
+        return me._callServiceMethod(method, args)
       }
     });
   }

@@ -6,15 +6,17 @@
 
 const log = require("../helper/log")
 const express = require('express')
+const bodyParser = require('body-parser');
 const http = express()
 const axios = require('axios');
+http.use(bodyParser.json());
 
 exports.runServer = function (info, api) {
   info.methodList.forEach(method => {
-    // TODO: pass args to api methods
     // TODO: support possible exceptions (it should propagate exceptions to client)
-    http.get('/' + method, (req, res) => {
-      let apiResult = api[method]()
+    http.post('/' + method, (req, res) => {
+      args = req.body
+      let apiResult = api[method].apply({}, args)
       let httpResult = {
         'ok': true,
         'res': apiResult
@@ -29,8 +31,6 @@ exports.runServer = function (info, api) {
 
 exports.callServer = function (info, method, args) {
   let url = "http://" + info.host + ":" + info.channelPort + '/' + method
-  return axios.get(url).then((res) => {
-    let serverRes = res.data
-    return serverRes.res
-  })
+  // todo: support exception
+  return axios.post(url, args).then((res)=>res.data.res)
 }

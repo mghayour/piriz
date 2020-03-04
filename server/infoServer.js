@@ -1,10 +1,6 @@
 // small express server to pass info.json to client
 const server = require('light-http-server');
-
-function log(string){
-  currentDateString = new Date().toISOString()
-  console.log(currentDateString, string)
-}
+const log = require("../helper/log").log
 
 exports.start = function (info) {
   server.get('/', function (req, res) {

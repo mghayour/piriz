@@ -48,5 +48,7 @@ exports.start = function (args) {
   infoServer.start(info)
 
   // start target channel
+  targetChannel = require("../channel/" + info.channelType)
+  targetChannel.runServer(info, api)
 
 }

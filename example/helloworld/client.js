@@ -6,7 +6,7 @@ const piriz = require("piriz");
 
 // connect to server
 const myService = new piriz("localhost")
-await myService.waitForInit()
+await myService.waitForInit() // or wait internally in above ?!
 
 // use server methods
 res = await myService.hello()

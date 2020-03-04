@@ -20,16 +20,22 @@ class PirizClient {
 
   async _getServiceInfo() {
     let url = "http://" + this.host + ":" + this.infoPort + '/info.json'
-    var res = request('GET', url);
-    const me = this
-    me.info = JSON.parse(res.getBody())
-    me.info.methodList.forEach(method => {
-      // TODO: support function args
-      // TODO: support possible exceptions
-      me[method] = function (...args) {
-        return me._callServiceMethod(method, args)
-      }
-    });
+    try {
+      var res = request('GET', url);
+      const me = this
+      me.info = JSON.parse(res.getBody())
+      me.info.methodList.forEach(method => {
+        // TODO: support function args
+        // TODO: support possible exceptions
+        me[method] = function (...args) {
+          return me._callServiceMethod(method, args)
+        }
+      });      
+    } catch (error) {
+      log("Piriz connection failed", url)
+      log(error)
+      process.exit(1)
+    }
   }
 
 }

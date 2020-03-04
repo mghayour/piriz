@@ -25,8 +25,6 @@ class PirizClient {
       const me = this
       me.info = JSON.parse(res.getBody())
       me.info.methodList.forEach(method => {
-        // TODO: support function args
-        // TODO: support possible exceptions
         me[method] = function (...args) {
           return me._callServiceMethod(method, args)
         }

@@ -11,9 +11,11 @@ const http = express()
 const axios = require('axios');
 http.use(bodyParser.json());
 
+// TODO: support possible exceptions (it should propagate exceptions to client)
+// TODO: support promise for server apis
+
 exports.runServer = function (info, api) {
   info.methodList.forEach(method => {
-    // TODO: support possible exceptions (it should propagate exceptions to client)
     http.post('/' + method, (req, res) => {
       args = req.body
       let apiResult = api[method].apply({}, args)
@@ -31,6 +33,5 @@ exports.runServer = function (info, api) {
 
 exports.callServer = function (info, method, args) {
   let url = "http://" + info.host + ":" + info.channelPort + '/' + method
-  // todo: support exception
   return axios.post(url, args).then((res)=>res.data.res)
 }

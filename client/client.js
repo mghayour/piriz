@@ -2,26 +2,24 @@
 // get info url in constructor
 // user can wait for initialize finish (waitForInitialazation)
 // call user functions with channel type and get response back
-const http = require('http')
+const axios = require('axios');
+const log = require("../helper/log")
 
 class PirizClient {
 
   constructor(host, infoPort=2679) {
     this.host = host;
     this.infoPort = infoPort;
-    this.getServiceInfo()
+    this.getServiceInfo().catch(()=>{
+      log("Cant connect to PirizServer at " + host + ":" + infoPort)
+      process.exit(1)
+    })
   }
 
-  getServiceInfo() {
-    http.get({
-      hostname: this.host,
-      port: this.infoPort,
-      path: '/info.json',
-      // agent: false  // Create a new agent just for this one request
-    }, (res) => {
-      // Do stuff with response
-      console.log(res.json)
-    });
+  async getServiceInfo() {
+    let info = await axios.get("http://" + this.host + ":" + this.infoPort + '/info.json');
+    this.info = info
+    console.log(info.data)
   }
 
 }

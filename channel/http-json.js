@@ -11,9 +11,6 @@ const http = express()
 const axios = require('axios');
 http.use(bodyParser.json());
 
-// TODO: support possible exceptions (it should propagate exceptions to client)
-// TODO: support promise for server apis
-
 exports.runServer = function (info, api) {
   info.methodList.forEach(method => {
     http.post('/' + method, async (req, res) => {

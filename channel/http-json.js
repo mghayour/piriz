@@ -16,15 +16,32 @@ http.use(bodyParser.json());
 
 exports.runServer = function (info, api) {
   info.methodList.forEach(method => {
-    http.post('/' + method, (req, res) => {
-      args = req.body
-      let apiResult = api[method].apply({}, args)
+    http.post('/' + method, async (req, res) => {
+      let args = req.body
       let httpResult = {
-        'ok': true,
-        'res': apiResult
+        'ok': null,
+        'res': null
       }
+
+      try {
+        let apiResult = api[method].apply({}, args)
+        apiResult = await Promise.resolve(apiResult)
+        httpResult.ok = true
+        httpResult.res = apiResult
+      } catch (error) {
+        log("ERROR: method:", method, " args:", args)
+        httpResult.ok = false
+        if (error && error.message) {
+          httpResult.err = error.message
+          log("ERROR Message:", error.message)
+        } else {
+          httpResult.err = "<EMPTY ERROR>"
+        }
+      }
+
       httpResult = JSON.stringify(httpResult)
       res.send(httpResult)
+      res.end()
     })
   });
   http.listen(info.channelPort)
@@ -33,5 +50,12 @@ exports.runServer = function (info, api) {
 
 exports.callServer = function (info, method, args) {
   let url = "http://" + info.host + ":" + info.channelPort + '/' + method
-  return axios.post(url, args).then((res)=>res.data.res)
+  return axios.post(url, args).then((res) => {
+    let httpResult = res.data
+    if (httpResult.ok) {
+      return httpResult.res
+    } else {
+      throw new Error(httpResult.err)
+    }
+  })
 }

@@ -11,9 +11,21 @@ console.log("piriz connected")
 
 // // use server methods
 myService.noResult().then((res) => {
-  console.log("noResult result:", res)
+  console.log("noResult:", res)
 })
 
 myService.arrayInput(["a", "b", 4, 0], "END").then((res) => {
-  console.log("arrayInput result:", res)
+  console.log("arrayInput:", res)
+})
+
+myService.promiseResult().then((res) => {
+  console.log("promiseResult ok:", res)
+}, (err) => {
+  console.log("promiseResult err:", err)
+})
+
+myService.exception(5).then((res) => {
+  console.log("exception ok:", res)
+}, (err) => {
+  console.log("exception err:", err)
 })

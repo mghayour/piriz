@@ -7,9 +7,10 @@ exports.noResult = function () {
 }
 
 // return promise
-exports.promiseResult = function (a, b) {
+exports.promiseResult = function (inputNumber) {
   return new Promise((resolve, reject) => {
-    setTimeout(resolve, 2000)
+    setTimeout(() => resolve(inputNumber + 10), 2000 * Math.random())
+    setTimeout(reject, 2000 * Math.random())
   })
 }
 
@@ -22,4 +23,7 @@ exports.arrayInput = function (arr, lastOne) {
 // input object
 // input nested object
 // exception happends
+exports.exception = function (a) {
+  return a.notExitedFunction()
+}
 

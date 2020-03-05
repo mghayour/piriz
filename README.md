@@ -12,21 +12,18 @@ This project help you to get rid of microservices calls headache and make it sim
 ### Server
 1. start server using piriz command
   - `piriz start api.js`
-
-### Client
-1. connect to server
-2. use your functions
-
-### Example of use
-api.js
 ```js
+// api.js
 exports.hello = function() {
   return "Hello World, Im working"
 }
 ```
 
-client.js
+### Client
+1. connect to server
+2. use your functions
 ```js
+// client.js
 const piriz = require("piriz");
 const myService = new piriz("localhost")
 

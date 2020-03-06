@@ -31,9 +31,10 @@ myService.hello().then((res) => {
   console.log("Hello result:", res)
 })
 ```
-For more examples, check [complex example](./example/complex)
+Thats it! you have connected two microservices just like a function call!
+for more examples, check [complex example](./example/complex).
 
-## Port usage
+### Port usage
 By default Piriz use port 2679 for passing server info and 2680 for data channel
 
 #### To change channel port
@@ -64,8 +65,8 @@ exports.PIRIZ_SETTING = {
 Also use info port to initialize Piriz in client
 ```js
 // client.js
-const piriz = require("piriz", 1019);
-const myService = new piriz("localhost")
+const piriz = require("piriz");
+const myService = new piriz("localhost", 1019)
 
 myService.hello().then((res) => {
   console.log("Hello result:", res)
@@ -73,8 +74,9 @@ myService.hello().then((res) => {
 ```
 
 ## Contribute
-Feel free to open issue or make PR
-If you want to join this, i think we need these codes:
-automation tests (make it in ./test/test.js)
-socketio channel (add it in ./src/channel)
-socketio example (add it in ./example)
+Feel free to open issue or make PR,
+if you want to join this, i think we need these codes:
+- automation tests (make it in ./test/test.js)
+- socketio channel (add it in ./src/channel)
+- socketio example (add it in ./example)
+- docker and docker-compose example (add it in ./example)

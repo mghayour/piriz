@@ -1,6 +1,6 @@
 {
   "name": "piriz",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "make webservice calls simple as function call",
   "main": "src/client/client.js",
   "bin": "bin/piriz",

@@ -14,6 +14,12 @@ myService.noResult().then((res) => {
   console.log("noResult:", res)
 })
 
+myService.promiseResult(2).then((res) => {
+  console.log("promiseResult ok:", res)
+}, (err) => {
+  console.log("promiseResult err:", err)
+})
+
 myService.arrayInput(["a", "b", 4, 0], "END").then((res) => {
   console.log("arrayInput:", res)
 })
@@ -27,12 +33,6 @@ myService.objectInput(
   }
 ).then((res) => {
   console.log("objectInput:", res)
-})
-
-myService.promiseResult(2).then((res) => {
-  console.log("promiseResult ok:", res)
-}, (err) => {
-  console.log("promiseResult err:", err)
 })
 
 myService.exception(5).then((res) => {

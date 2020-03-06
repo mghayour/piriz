@@ -21,7 +21,10 @@ exports.arrayInput = function (arr, lastOne) {
 }
 
 // input object
-// input nested object
+exports.objectInput = function(obj) {
+  return obj.person.age + 1
+}
+
 // exception happends
 exports.exception = function (a) {
   return a.notExitedFunction()

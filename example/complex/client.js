@@ -18,6 +18,17 @@ myService.arrayInput(["a", "b", 4, 0], "END").then((res) => {
   console.log("arrayInput:", res)
 })
 
+myService.objectInput(
+  {
+    person: {
+      name:"Mahdi",
+      age: 17
+    }
+  }
+).then((res) => {
+  console.log("objectInput:", res)
+})
+
 myService.promiseResult(2).then((res) => {
   console.log("promiseResult ok:", res)
 }, (err) => {

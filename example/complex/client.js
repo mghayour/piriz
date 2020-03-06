@@ -18,7 +18,7 @@ myService.arrayInput(["a", "b", 4, 0], "END").then((res) => {
   console.log("arrayInput:", res)
 })
 
-myService.promiseResult().then((res) => {
+myService.promiseResult(2).then((res) => {
   console.log("promiseResult ok:", res)
 }, (err) => {
   console.log("promiseResult err:", err)

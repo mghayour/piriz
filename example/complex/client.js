@@ -44,9 +44,9 @@ async function main() {
   }
 
   try {
-    await myService.promiseResultFailComplex(17)
+    await myService.promiseResultFailWithObject(17)
   } catch (error) {
-    console.log("promiseResultFailComplex ERROR:", error)
+    console.log("promiseResultFailWithObject ERROR:", error)
   }
 
 }

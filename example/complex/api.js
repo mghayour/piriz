@@ -37,14 +37,14 @@ exports.promiseResultFail = function () {
 }
 
 // return promise fail with object
-exports.promiseResultFailComplex = function (inputNumber) {
+exports.promiseResultFailWithObject = function (inputNumber) {
   return new Promise((resolve, reject) => {
-    let complexErrorStatus = {
+    let errorStatusObject = {
       status: "working",
-      threadnumber: 12,
+      threadNumber: 12,
       reason: "database",
       number: inputNumber
     }
-    setTimeout(() => reject(complexErrorStatus), 2000 * Math.random())
+    setTimeout(() => reject(errorStatusObject), 2000 * Math.random())
   })
 }

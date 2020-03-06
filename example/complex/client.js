@@ -9,34 +9,44 @@ const piriz = require("../../");
 const myService = new piriz("localhost")
 console.log("piriz connected")
 
-// // use server methods
-myService.noResult().then((res) => {
+
+main()
+async function main() {
+  // // use server methods
+
+  let res = await myService.noResult()
   console.log("noResult:", res)
-})
 
-myService.promiseResult(2).then((res) => {
-  console.log("promiseResult ok:", res)
-}, (err) => {
-  console.log("promiseResult err:", err)
-})
-
-myService.arrayInput(["a", "b", 4, 0], "END").then((res) => {
+  res = await myService.arrayInput(["a", "b", 4, 0], "END")
   console.log("arrayInput:", res)
-})
 
-myService.objectInput(
-  {
+  res = await myService.objectInput({
     person: {
-      name:"Mahdi",
+      name: "Mahdi",
       age: 17
     }
-  }
-).then((res) => {
+  })
   console.log("objectInput:", res)
-})
 
-myService.exception(5).then((res) => {
-  console.log("exception ok:", res)
-}, (err) => {
-  console.log("exception err:", err)
-})
+  try {
+    await myService.makeException(5)
+  } catch (error) {
+    console.log("makeException err:", error.message)
+  }
+
+  res = await myService.promiseResultOK(2)
+  console.log("promiseResultOK:", res)
+
+  try {
+    await myService.promiseResultFail()
+  } catch (error) {
+    console.log("promiseResultFail ERROR:", error)
+  }
+
+  try {
+    await myService.promiseResultFailComplex(17)
+  } catch (error) {
+    console.log("promiseResultFailComplex ERROR:", error)
+  }
+
+}

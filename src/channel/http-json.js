@@ -28,11 +28,14 @@ exports.runServer = function (info, api) {
       } catch (error) {
         log("ERROR: method:", method, " args:", args)
         httpResult.ok = false
-        if (error && error.message) {
+        if (error instanceof Error) {
+          httpResult.nativeError = true
           httpResult.err = error.message
           log("ERROR Message:", error.message)
         } else {
-          httpResult.err = "<EMPTY ERROR>"
+          httpResult.nativeError = false
+          httpResult.err = error
+          log("ERROR Custom:", error)
         }
       }
 
@@ -52,7 +55,11 @@ exports.callServer = function (info, method, args) {
     if (httpResult.ok) {
       return httpResult.res
     } else {
-      throw new Error(httpResult.err)
+      if (httpResult.nativeError) {
+        throw new Error(httpResult.err)
+      } else {
+        throw httpResult.err
+      }
     }
   })
 }

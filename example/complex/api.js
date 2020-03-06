@@ -6,14 +6,6 @@ exports.noResult = function () {
   a = "some staff"
 }
 
-// return promise
-exports.promiseResult = function (inputNumber) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => resolve(inputNumber + 10), 2000 * Math.random())
-    setTimeout(reject, 2000 * Math.random())
-  })
-}
-
 // input array
 exports.arrayInput = function (arr, lastOne) {
   arr.push(lastOne)
@@ -26,7 +18,33 @@ exports.objectInput = function(obj) {
 }
 
 // exception happends
-exports.exception = function (a) {
+exports.makeException = function (a) {
   return a.notExitedFunction()
 }
 
+// return promise ok
+exports.promiseResultOK = function (inputNumber) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => resolve(inputNumber + 10), 2000 * Math.random())
+  })
+}
+
+// return promise fail
+exports.promiseResultFail = function () {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => reject("Excpected Error!"), 2000 * Math.random())
+  })
+}
+
+// return promise fail with object
+exports.promiseResultFailComplex = function (inputNumber) {
+  return new Promise((resolve, reject) => {
+    let complexErrorStatus = {
+      status: "working",
+      threadnumber: 12,
+      reason: "database",
+      number: inputNumber
+    }
+    setTimeout(() => reject(complexErrorStatus), 2000 * Math.random())
+  })
+}

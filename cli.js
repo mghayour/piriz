@@ -38,7 +38,7 @@ Cli.run = function (args) {
 
     // start server
     if (args[2] == 'start') {
-      const server = require('./server/server.js');
+      const server = require('./src/server/server.js');
       server.start(args.slice(3));
       ok = true;
     }

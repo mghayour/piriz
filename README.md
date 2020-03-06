@@ -72,6 +72,9 @@ myService.hello().then((res) => {
 })
 ```
 
-
-
-
+## Contribute
+Feel free to open issue or make PR
+If you want to join this, i think we need these codes:
+automation tests (make it in ./test/test.js)
+socketio channel (add it in ./src/channel)
+socketio example (add it in ./example)

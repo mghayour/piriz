@@ -8,6 +8,8 @@
 const path = require('path')
 const fs = require('fs');
 const infoServer = require('./infoServer');
+const portNumber = require("../helper/portNumber")
+const log = require("../helper/log")
 
 exports.start = function (args) {
   // read api file
@@ -15,26 +17,35 @@ exports.start = function (args) {
   let processpath = process.cwd();
   apiFullPath = path.join(processpath, apiFilename)
   if (!fs.existsSync(apiFullPath)) {
-    console.log("ERROR: current directory does not contains " + apiFilename);
-    console.log("make sure that you are running piriz on correct directory");
+    log("ERROR: current directory does not contains " + apiFilename);
+    log("make sure that you are running piriz on correct directory");
     process.exit(1);
   }
   api = require(apiFullPath)
 
   // create server info
   info = {
-    'host': 'N/A',
+    'name': undefined,
+    'host': undefined,
     'infoPort': 2679,
-    'channelPort': 2680,
+    'channelPort': undefined,
     'channelType': 'http-json',
     'methodList': []
   }
   if (api.PIRIZ_SETTING) {
     for (const key in api.PIRIZ_SETTING) {
-      if (info[key]) {
+      if (key in info) {
         info[key] = api.PIRIZ_SETTING[key];
       }
     }
+  }
+
+  if (info.name) {
+    log("using hash of service name for portNumber")
+    info.infoPort = portNumber.getPortNumber(info.name);
+  }
+  if (!info.channelPort) {
+    info.channelPort = info.infoPort + 1;
   }
 
   // update methodList

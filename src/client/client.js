@@ -3,13 +3,14 @@
 // user can wait for initialize finish (waitForInitialazation)
 // call user functions with channel type and get response back
 const log = require("../helper/log")
+const portNumber = require("../helper/portNumber")
 var request = require('sync-request');
 
 class PirizClient {
 
-  constructor(host, infoPort=2679) {
+  constructor(host, infoPortOrServiceName=2679) {
     this.host = host;
-    this.infoPort = infoPort;
+    this.infoPort = portNumber.getPortNumber(infoPortOrServiceName);
     this._getServiceInfo()
   }
 

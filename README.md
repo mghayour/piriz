@@ -37,41 +37,16 @@ for more examples, check [complex example](./example/complex).
 ### Port usage
 By default Piriz use port 2679 for passing server info and 2680 for data channel
 
-#### To change channel port
-Just add PIRIZ_SETTING in your api file like this:
+#### service name as port
+You can use service name instead of port number, its great for running multiple service on same machine
 ```js
-// api.js
-exports.hello = function() {
-  return "Hello World, Im working"
-}
-
-exports.PIRIZ_SETTING = {
-  'channelPort': 1020
-}
+const service1 = piriz.connect("localhost", "hello")
+const service2 = piriz.connect("localhost", "salam")
 ```
+check [service name full example](./example/serviceName).
 
-#### To change info port
-You should change PIRIZ_SETTING in your api file like this:
-```js
-// api.js
-exports.hello = function() {
-  return "Hello World, Im working"
-}
-
-exports.PIRIZ_SETTING = {
-  'infoPort': 1019
-}
-```
-Also use info port to initialize Piriz in client
-```js
-// client.js
-const piriz = require("piriz");
-const myService = piriz.connect("localhost", 1019)
-
-myService.hello().then((res) => {
-  console.log("Hello result:", res)
-})
-```
+#### use your custom ports
+Also you can use your needed custom ports, to this, check [custom port example](./example/customPort).
 
 ## Contribute
 Feel free to open issue or make PR,
@@ -80,3 +55,4 @@ if you want to join this, i think we need these codes:
 - socketio channel (add it in ./src/channel)
 - socketio example (add it in ./example)
 - docker and docker-compose example (add it in ./example)
+- but, its ok to add anything else you need

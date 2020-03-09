@@ -6,7 +6,7 @@ const piriz = require("../../");
 // const piriz = require("piriz");
 
 // connect to server
-const myService = new piriz("localhost")
+const myService = piriz.connect("localhost")
 console.log("piriz connected")
 
 

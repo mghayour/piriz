@@ -2,7 +2,7 @@
   "name": "piriz",
   "version": "1.0.3",
   "description": "make webservice calls simple as function call",
-  "main": "src/client/client.js",
+  "main": "index.js",
   "bin": "bin/piriz",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

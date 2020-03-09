@@ -25,7 +25,7 @@ exports.hello = function() {
 ```js
 // client.js
 const piriz = require("piriz");
-const myService = new piriz("localhost")
+const myService = piriz.connect("localhost")
 
 myService.hello().then((res) => {
   console.log("Hello result:", res)
@@ -66,7 +66,7 @@ Also use info port to initialize Piriz in client
 ```js
 // client.js
 const piriz = require("piriz");
-const myService = new piriz("localhost", 1019)
+const myService = piriz.connect("localhost", 1019)
 
 myService.hello().then((res) => {
   console.log("Hello result:", res)

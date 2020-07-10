@@ -10,8 +10,9 @@ const fs = require('fs');
 const infoServer = require('./infoServer');
 const portNumber = require("../helper/portNumber")
 const log = require("../helper/log")
+const isPortReachable = require('is-port-reachable')
 
-exports.start = function (args) {
+exports.start = async function (args) {
   // read api file
   apiFilename = args[0]
   let processpath = process.cwd();
@@ -27,8 +28,6 @@ exports.start = function (args) {
   info = {
     'name': "",
     'host': undefined,
-    'infoPort': undefined,
-    'channelPort': undefined,
     'channelType': 'http-json',
     'methodList': []
   }
@@ -41,10 +40,14 @@ exports.start = function (args) {
   }
 
   log("using hash of service name for portNumber")
-  info.infoPort = portNumber.getInfoPortNumber(info.name);
-  if (!info.channelPort) {
-    info.channelPort = info.infoPort + 1;
-  }
+  infoPort = portNumber.getInfoPortNumber(info.name);
+  channelPort = infoPort-1;
+ 
+  infoPort = findFirstOpenPort(infoPort);
+  channelPort = findFirstOpenPort(channelPort);
+ 
+  info.infoPort = await infoPort;
+  info.channelPort = await channelPort;
 
   // update methodList
   for (const key in api) {
@@ -60,4 +63,15 @@ exports.start = function (args) {
   targetChannel = require("../channel/" + info.channelType)
   targetChannel.runServer(info, api)
 
+}
+
+async function findFirstOpenPort(startPort) {
+  for(let p=0;p<2000;p+=2) {
+    let port = (startPort+p)
+    if (port>=49150)
+      port = (port-49150)+1024 // not tested yet
+    let openedBefore = await isPortReachable(port);
+    if(!openedBefore)
+      return port
+  }
 }

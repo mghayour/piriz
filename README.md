@@ -46,7 +46,7 @@ const service2 = piriz.connect("localhost", "salam")
 check [service name full example](./example/serviceName).
 
 #### use your custom ports
-Also you can use your needed custom ports, to this, check [custom port example](./example/customPort).
+using custom port is depricated, you must provide service name, and port will assign and found autmatically
 
 ## Contribute
 Feel free to open issue or make PR,

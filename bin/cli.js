@@ -2,7 +2,7 @@
 var Cli = {};
 
 function help() {
-  var pjson = require('./package.json');
+  var pjson = require('../package.json');
   // ascii art generated with https://www.askapache.com/online-tools/figlet-ascii/
 
   console.log(" ____  _      _     ");
@@ -30,7 +30,7 @@ Cli.run = function (args) {
 
     // current package version
     if (args[2] == '-v') {
-      var pjson = require('./package.json');
+      var pjson = require('../package.json');
       console.log('Piriz', 'v' + pjson.version);
       process.exit(1);
       ok = true;
@@ -38,7 +38,7 @@ Cli.run = function (args) {
 
     // start server
     if (args[2] == 'start') {
-      const server = require('./src/server/server.js');
+      const server = require('../src-js/server/server.js');
       server.start(args.slice(3));
       ok = true;
     }

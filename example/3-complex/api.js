@@ -48,3 +48,7 @@ exports.promiseResultFailWithObject = function (inputNumber) {
     setTimeout(() => reject(errorStatusObject), 2000 * Math.random())
   })
 }
+
+exports.PIRIZ_SETTING = {
+  'name': "complex"
+}

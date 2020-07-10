@@ -1,26 +1,14 @@
 // this will convert string to portnumber, its usefull for using service name instead of port number
 
-module.exports.getPortNumber = function (portNumberOrServiceName) {
-  if (typeof portNumberOrServiceName == "number") {
-    return portNumberOrServiceName
-  }
-  if (typeof portNumberOrServiceName != "string") {
-    throw new Exception("Invalid portNumberOrServiceName")
-  }
-  if (isNaN(portNumberOrServiceName)) {
-    // non convertable string
-    return stringToPortNumber(portNumberOrServiceName)
-  } else {
-    // number string
-    return parseInt(portNumberOrServiceName)
-  }
+module.exports.getInfoPortNumber = function (serviceName) {
+    return stringToPortNumber(serviceName + "")
 }
 
 stringToPortNumber = function(serviceName) {
-  let range = 49151 - 1024
+  let range = Math.ceil((49151 - 1024)/2)
   serviceName = serviceName.toLowerCase()
   let port = hashFnv32a(serviceName)
-  port = port % range + 1024
+  port = (port % range)*2 + 1024
   return port
 }
 

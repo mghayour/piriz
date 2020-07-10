@@ -42,7 +42,7 @@ exports.start = function (args) {
 
   if (info.name) {
     log("using hash of service name for portNumber")
-    info.infoPort = portNumber.getPortNumber(info.name);
+    info.infoPort = portNumber.getInfoPortNumber(info.name);
   }
   if (!info.channelPort) {
     info.channelPort = info.infoPort + 1;

@@ -8,9 +8,9 @@ var request = require('sync-request');
 
 class PirizClient {
 
-  constructor(host, infoPortOrServiceName=2679) {
+  constructor(host, serviceName="") {
     this.host = host;
-    this.infoPort = portNumber.getPortNumber(infoPortOrServiceName);
+    this.infoPort = portNumber.getInfoPortNumber(serviceName);
     this._getServiceInfo()
   }
 

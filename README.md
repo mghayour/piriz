@@ -32,7 +32,7 @@ myService.hello().then((res) => {
 })
 ```
 Thats it! you have connected two microservices just like a function call!
-for more examples, check [complex example](./example/complex).
+for more examples, check [complex example](./example/3-complex).
 
 ### Port usage
 By default Piriz use port 2679 for passing server info and 2680 for data channel
@@ -43,7 +43,7 @@ You can use service name instead of port number, its great for running multiple 
 const service1 = piriz.connect("localhost", "hello")
 const service2 = piriz.connect("localhost", "salam")
 ```
-check [service name full example](./example/serviceName).
+check [service name full example](./example/2-serviceName).
 
 #### use your custom ports
 using custom port is depricated, you must provide service name, and port will assign and found autmatically

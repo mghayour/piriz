@@ -9,11 +9,19 @@ const piriz = require("../../");
 const myService = piriz.connect("localhost")
 console.log("piriz connected")
 
-// // use server methods
-myService.hello().then((res) => {
-  console.log("Hello result:", res)
-})
+main()
+async function main() {
+  ok = true
 
-myService.add(1025, 2).then((res) => {
+  // // use server methods
+  res = await myService.hello()
+  console.log("Hello result:", res)
+  ok = ok && res=="Hello World, Im working"
+  
+  res = await myService.add(1025, 2)
   console.log("Add result:", res)
-})
+  ok = ok && res==1027
+  
+  if(ok)
+    console.log("TEST_PASSED")
+}

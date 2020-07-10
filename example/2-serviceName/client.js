@@ -10,11 +10,20 @@ const service1 = piriz.connect("localhost", "HeLlO") // service name is not case
 const service2 = piriz.connect("localhost", "salam")
 console.log("piriz connected")
 
-// // use server methods
-service1.sayHi().then((res) => {
-  console.log("service1:", res)
-})
 
-service2.sayHi().then((res) => {
+main()
+async function main() {
+  ok = true
+
+  // // use server methods
+  res = await service1.sayHi()
+  console.log("service1:", res)
+  ok = ok && res=="Hello World, Im working"
+  
+  res = await service2.sayHi()
   console.log("service2:", res)
-})
+  ok = ok && res=="Salam donya, man kar mikonam"
+
+  if(ok)
+    console.log("TEST_PASSED")
+}

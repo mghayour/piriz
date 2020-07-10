@@ -30,6 +30,7 @@ class PirizClient {
           return me._callServiceMethod(method, args)
         }
       });      
+      log(me.info)
     } catch (error) {
       log("Piriz connection failed", url)
       log(error)

@@ -8,6 +8,7 @@ stringToPortNumber = function(serviceName) {
   let range = Math.ceil((49151 - 1024)/2)
   serviceName = serviceName.toLowerCase()
   let port = hashFnv32a(serviceName)
+  console.log(port)
   port = (port % range)*2 + 1024
   return port
 }

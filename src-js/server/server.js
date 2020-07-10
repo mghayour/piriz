@@ -25,9 +25,9 @@ exports.start = function (args) {
 
   // create server info
   info = {
-    'name': undefined,
+    'name': "",
     'host': undefined,
-    'infoPort': 2679,
+    'infoPort': undefined,
     'channelPort': undefined,
     'channelType': 'http-json',
     'methodList': []
@@ -40,10 +40,8 @@ exports.start = function (args) {
     }
   }
 
-  if (info.name) {
-    log("using hash of service name for portNumber")
-    info.infoPort = portNumber.getInfoPortNumber(info.name);
-  }
+  log("using hash of service name for portNumber")
+  info.infoPort = portNumber.getInfoPortNumber(info.name);
   if (!info.channelPort) {
     info.channelPort = info.infoPort + 1;
   }
